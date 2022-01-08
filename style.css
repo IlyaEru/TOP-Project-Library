@@ -49,6 +49,13 @@ align-self: flex-start;
     flex-direction: column;
     gap: 5px;
 }
+
+.error-para{
+    text-align: center;
+    color: red;
+    font-size: 1vw;
+    width: 15vw;
+}
 #books{
     display: flex;
     flex-wrap: wrap;
@@ -58,9 +65,8 @@ align-self: flex-start;
     align-content: flex-start
 }
 .book-actions-container{
-    margin: 0;
+    margin: 4px 4px 3px 4px;
     height: 10px;
-    margin-bottom: 3px;
     align-items: center;
     display: flex;
     justify-content: space-between; 
@@ -74,11 +80,11 @@ align-self: flex-start;
 .book{
     width: min(20vw, 250px);
     background-color: rgb(20 127 237 / 52%);
-    height: fit-content;
+    height: min(30vw, 250px);
     padding: 10px;
     border-radius: 20px;
     font-size: min(1.4vw, 20px);
-    
+
 
 }
 .book-actions-container p{
@@ -105,7 +111,7 @@ align-self: flex-start;
 footer{
     opacity: 0.8;
     background-color: #24292f;
-    margin-top: auto;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;

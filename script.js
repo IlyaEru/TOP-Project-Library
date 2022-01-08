@@ -6,7 +6,9 @@ const authorTextBox = document.querySelector('#auth');
 const titleTextBox = document.querySelector('#title');
 const pagesTextBox = document.querySelector('#pages');
 const form = document.querySelector('form');
-const addIcon = document.querySelector('#add-icon')
+const addIcon = document.querySelector('#add-icon');
+const errorPara = document.querySelector('.error-para');
+const resetButton = document.querySelector('.btn-reset')
 
 let myLibrary = [];
 function changeReadingStatus(element) {
@@ -16,6 +18,12 @@ function changeReadingStatus(element) {
 
 }
 function action() {
+  function deleteBook() {
+  
+   let bookTitle = this.parentNode.parentNode.querySelector('h3');
+  let answer = confirm(`Are you sure you want to delete ${bookTitle.textContent}?`);
+   if (answer) {this.parentNode.parentNode.remove()};
+  }
   const statusUpdateImg = document.querySelectorAll('.read-status-update');
   const deleteBookImg = document.querySelectorAll('.delete-book');
 
@@ -44,13 +52,12 @@ function action() {
   })
 
   deleteBookImg.forEach((img) => {
-    let bookTitle = img.parentNode.parentNode.querySelector('h3');
-    img.addEventListener('click', () => {
-    let answer = confirm(`Are you sure you want to delete ${bookTitle.textContent}?`)
-    console.log(answer);
-    if (answer) {img.parentNode.parentNode.remove()}
+    if (img.getAttribute('listener') !== 'true'){
+      img.addEventListener('click', deleteBook);
+      img.setAttribute('listener', 'true');
+  }
   })
-  })
+  
 
   deleteBookImg.forEach((img) => {
     img.addEventListener('mouseout', () => {
@@ -118,10 +125,20 @@ addBookSubmitButton.addEventListener('click', (e) => {
   e.preventDefault();
   let author = authorTextBox.value;
   let title = titleTextBox.value;
-  let pages = pagesTextBox.value;
+if (pagesTextBox.value <0 || pagesTextBox.value > 9999) {
+  errorPara.textContent = 'Number of pages must be higher than 0 and lower than 9999'
+  return false
+} 
+ let pages = pagesTextBox.value;
   let read = document.querySelector('input[name="read"]:checked').value;
   let newBook = new Book(author, title, pages, read);
-  console.log(newBook);
   addBookToLibrary(newBook)
 })
 action()
+pagesTextBox.addEventListener('change', () => {
+  errorPara.textContent = ''
+});
+resetButton.addEventListener('click', (e) => {
+e.preventDefault()
+form.reset()
+})
