@@ -105,12 +105,14 @@ function action() {
 }
 
 
-function Book(author, title, pages, read) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.read = read;
-  this.ID = Math.random().toString(16).slice(2)
+class Book {
+  constructor(author, title, pages, read) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+    this.ID = Math.random().toString(16).slice(2);
+  }
 }
 
 function addBookToLibrary(book) {
