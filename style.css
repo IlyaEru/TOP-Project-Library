@@ -84,7 +84,7 @@ align-self: flex-start;
     padding: 10px;
     border-radius: 20px;
     font-size: min(1.4vw, 20px);
-
+    padding-bottom: 1.5vw;
 
 }
 .book-actions-container p{
